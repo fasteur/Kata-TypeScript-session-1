@@ -1,7 +1,7 @@
 
 class Class1 {
 
-    propertyOfClass1: string;
+    property1: string;
     
     constructor(obj: Class1) {
         Object.assign(this, obj);
@@ -9,32 +9,33 @@ class Class1 {
 }
 class Class2 {
     
-    propertyOfClass2: number;
+    property2: number;
     
     constructor(obj: Class2) {
         Object.assign(this, obj);
     }
 }
 
-function getPropertyOfClass(myClass: any): any {
-    let returnValue: any = null;
+function getProperty(myClass: any): any {
+
+    let value: any = null;
+
     if (myClass instanceof Class1) {
-        returnValue = myClass.propertyOfClass1;
+        value = myClass.property1;
     } else if (myClass instanceof Class2) {
-        returnValue = myClass.propertyOfClass2;
+        value = myClass.property2;
     }
-    return returnValue;
+    return value;
 }
 
 const myClass1 = new Class1({
-    propertyOfClass1: "propertyOfClass1"
+    property1: "property1"
 });
 
 const myClass2 = new Class2({
-    propertyOfClass2: 2
+    property2: 2
 });
 
-
-getPropertyOfClass(myClass2) // number
+getProperty(myClass2) // number
 
 export {};

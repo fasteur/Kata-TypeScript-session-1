@@ -1,6 +1,6 @@
 class Class1 {
 
-    propertyOfClass1: string;
+    property1: string;
     
     constructor(obj: Class1) {
         Object.assign(this, obj);
@@ -8,7 +8,7 @@ class Class1 {
 }
 class Class2 {
     
-    propertyOfClass2: number;
+    property2: number;
     
     constructor(obj: Class2) {
         Object.assign(this, obj);
@@ -21,26 +21,29 @@ type AllClass = Class1 | Class2;
 // Type conditionnel 
 type MyClass<T extends AllClass> = T extends Class1 ? string : T extends Class2 ? number : null;
 
-function getPropertyOfClass<T extends AllClass>(myClass: T): MyClass<T> {
-    let returnValue: any = null;
+function getProperty<T extends AllClass>(myClass: T): MyClass<T> {
+
+    // Ici, j'ai converti la valeur de retour de la fonction en any. Il s'agit d'un problème ouvert dans TypeScript, et la seule façon de tirer parti de l'utilisation d'opérateurs conditionnels est de convertir le retour de cette manière.
+    let value: any = null;
+
     if (myClass instanceof Class1) {
-        returnValue = myClass.propertyOfClass1;
+        value = myClass.property1;
     } else if (myClass instanceof Class2) {
-        returnValue = myClass.propertyOfClass2;
+        value = myClass.property2;
     }
-    return returnValue;
+    return value;
 }
 
 const myClass1 = new Class1({
-    propertyOfClass1: "propertyOfClass1"
+    property1: "property1"
 });
 
 const myClass2 = new Class2({
-    propertyOfClass2: 2
+    property2: 2
 });
 
 
-getPropertyOfClass(myClass2) // number
+getProperty(myClass1) // number
 
 export {};
 
