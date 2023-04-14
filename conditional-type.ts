@@ -43,7 +43,7 @@ const myClass2 = new Class2({
 });
 
 
-getProperty(myClass1) // number
+getProperty(myClass2) // number
 
 export {};
 
