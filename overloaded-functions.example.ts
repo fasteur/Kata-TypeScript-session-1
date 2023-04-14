@@ -3,8 +3,8 @@
 
 type Animal = 'chat' | 'chien'; 
 
-function getAnimalSound(animal: "chat"): "Miaou";
-function getAnimalSound(animal: "chien"): "Woof";
+// function getAnimalSound(animal: "chat"): "Miaou";
+// function getAnimalSound(animal: "chien"): "Woof";
 function getAnimalSound(animal: Animal): string {
     switch (animal) {
         case "chat":
