@@ -1,8 +1,10 @@
+// Random interface
 interface IChoice {
     id: number;
     label: string;
 }
 
+// Indexed Access Type Keys
 enum FilterTypeEnum {
     TEXT = 'TEXT',
     MULTI_TEXT = 'MULTI_TEXT',
@@ -10,6 +12,7 @@ enum FilterTypeEnum {
     CHOICE = 'CHOICE',
 }
 
+// Indexed Access Type
 type FilterDataByType = {
     [FilterTypeEnum.TEXT]: string,
     [FilterTypeEnum.MULTI_TEXT]: string[],
@@ -17,18 +20,23 @@ type FilterDataByType = {
     [FilterTypeEnum.CHOICE]: IChoice[],
 }
 
+// Shape
 type FilterModelShape<FilterType> = {
     type: FilterType;
+    // Conditionnal type
     data: FilterType extends keyof FilterDataByType ? FilterDataByType[FilterType] : never;
 }
 
+// Utility type
 type ValueOf<T> = T[keyof T];
 
-type MapType = {
+// Mapped type
+type MappedType = {
     [Key in keyof FilterDataByType]: FilterModelShape<Key>
 }
 
-type FilterModelType = ValueOf<MapType>;
+// Dynamic type
+type FilterModelType = ValueOf<MappedType>;
 
 const filterModel: FilterModelType = {
     type: FilterTypeEnum.CHOICE,
