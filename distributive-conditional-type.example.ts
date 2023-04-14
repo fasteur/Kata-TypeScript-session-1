@@ -1,5 +1,5 @@
-// Dans cet exemple, ToArray est un type conditionnel distributif qui vérifie si T n'est pas un tableau (any). 
-// Si c'est le cas, T est retourné sous forme de tableau, sinon il est retourné sous forme de tableau (T[]). 
+// Dans cet exemple, ToArray est un type conditionnel distributif qui vérifie si T est un tableau (any[]). 
+// Si c'est le cas, T est retourné tel quel, sinon, il est retourné sous forme de tableau (T[]).  
 
 type ToArray<T> = T extends any[] ? T : T[];
 type A = ToArray<number>; // number[]
@@ -8,7 +8,8 @@ type A = ToArray<number>; // number[]
 type B = ToArray<number | string>; // number[] | string[]
 
 
-// En règle générale, la distributivité est le comportement souhaité. Pour éviter ce comportement, vous pouvez entourer chaque côté du mot clé extend de crochets.
+// En règle générale, la distributivité est le comportement souhaité. 
+// Pour éviter ce comportement, vous pouvez entourer chaque côté du mot clé extend de crochets.
 type ToArrayNonDist<Type> = [Type] extends [any] ? Type[] : never;
  
 // 'StrArrOrNumArr' n'est plus une union.
