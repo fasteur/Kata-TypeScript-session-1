@@ -1,6 +1,10 @@
+// Dans cet exemple, nous avons défini 2 surcharges de la fonction getAnimalSound,
+// chacune avec une signature différente en fonction de la valeur de l'argument animal. 
+
+type Animal = 'chat' | 'chien'; 
+
 function getAnimalSound(animal: "chat"): "Miaou";
 function getAnimalSound(animal: "chien"): "Woof";
-function getAnimalSound<T extends Animal>(animal: T): T extends "chat" ? "Miaou" : "Woof";
 function getAnimalSound(animal: Animal): string {
     switch (animal) {
         case "chat":
@@ -9,7 +13,6 @@ function getAnimalSound(animal: Animal): string {
             return "Woof";
     }
 }
-
 
 getAnimalSound('chat')
 
